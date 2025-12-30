@@ -1,0 +1,68 @@
+services:
+  frontend:
+    container_name: my_frontend
+    build:
+      context: frontend
+    volumes:
+      - dist:/app/dist
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /app/dist/index.html"]
+      interval: 2s
+      timeout: 2s
+      retries: 60
+  
+  nginx:
+    image: nginx:stable
+    ports:
+      - "3000:80"
+    volumes:
+      - dist:/usr/share/nginx/html
+      - ./nginx/nginx.local.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      frontend:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  backend:
+    container_name: my_backend
+    build:
+      context: backend
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15
+    container_name: my_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user_progect_1
+      POSTGRES_PASSWORD: user_password_1
+      POSTGRES_DB: db_progect_1
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  db_data:
+  dist:
+
+networks:
+  app-network:
+    driver: bridge
+
