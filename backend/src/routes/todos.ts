@@ -9,7 +9,7 @@ type Request = {
 }
 
 export const router = Router().post(
-  '/todos',
+  '/api/todos',
   async (req, res: Response) => {
     try {
       const { title, description, priority, dueDate } = req.body as Request;
