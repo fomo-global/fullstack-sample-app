@@ -1,8 +1,8 @@
 import { app } from './app';
-import { connectToDatabase, syncDatabase } from './db/index';
+import { connectToDatabase, syncDatabase } from '@/shared/utils/database.util';
 import type { Server } from 'http';
 
-const PORT = Number(process.env.PORT || 3001);
+const PORT = 3001;
 
 //. Функция: запуск HTTP-сервера
 function startHttpServer(): Promise<Server> {
@@ -20,27 +20,27 @@ function startHttpServer(): Promise<Server> {
 //. Главная функция: поэтапный запуск
 async function startServer() {
   try {
-    await connectToDatabase();
-    await syncDatabase();
-    await startHttpServer();
+    await connectToDatabase()
+    await syncDatabase()
+    await startHttpServer()
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.error('💥 Application failed during startup:', message);
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('💥 Application failed during startup:', message)
 
     if (message.startsWith('DB_AUTH_ERROR')) {
-      console.error('ℹ️ DB authentication failed');
+      console.error('ℹ️ DB authentication failed')
     }
 
     if (message.startsWith('DB_SYNC_ERROR')) {
-      console.error('ℹ️ DB sync failed');
+      console.error('ℹ️ DB sync failed')
     }
 
     if (message.startsWith('SERVER_START_ERROR')) {
-      console.error('ℹ️ HTTP server failed to start');
+      console.error('ℹ️ HTTP server failed to start')
     }
 
-    process.exit(1);
+    process.exit(1)
   }
 }
 
-startServer();
+startServer()

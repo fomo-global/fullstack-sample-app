@@ -1,8 +1,8 @@
-import express from 'express';
-import { router as todos } from './modules/todos';
+import express from 'express'
+import { authRoutes } from '@features/health/health.routes'
 
-export const app = express();
+export const app = express()
 
 app
   .use(express.json())
-  .use(todos);
+  .use(authRoutes)
