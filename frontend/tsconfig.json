@@ -9,7 +9,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "types": ["jest", "node"]
+    "types": ["jest", "node", "telegram-web-app"]
   },
   "ts-node": {
     "compilerOptions": {
