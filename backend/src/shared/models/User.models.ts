@@ -3,7 +3,7 @@ import { sequelize } from '../../config/database';
 
 interface UserAttributes {
   id: string;
-  telegramId: string;
+  telegramId: number;
   username: string | null;
   firstName: string | null;
   lastName: string | null;
@@ -19,8 +19,16 @@ type UserInstance = Model<UserAttributes, UserCreationAttributes> & UserAttribut
 export const User = sequelize.define<UserInstance>(
   'User',
   {
-    id: { type: DataTypes.STRING, autoIncrement: true, primaryKey: true },
-    telegramId: { type: DataTypes.STRING, allowNull: false, unique: true },
+    id: { 
+      type: DataTypes.UUID, 
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true 
+    },
+    telegramId: { 
+      type: DataTypes.BIGINT, 
+      allowNull: false, 
+      unique: true 
+    },
     username: { type: DataTypes.STRING, allowNull: true },
     firstName: { type: DataTypes.STRING, allowNull: true },
     lastName: { type: DataTypes.STRING, allowNull: true },
