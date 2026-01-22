@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { parseTelegramInitData } from '@/shared/utils/telegram.util'
-import { findOrCreateByTelegramId } from './health.repo'
+import { findOrCreateByTelegramId } from './auth.repo'
 import { signAccessToken } from '@/shared/utils/jwt.util'
 
 export async function telegramAuth(

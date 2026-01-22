@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { telegramAuth } from './health.controller'
+import { telegramAuth } from './auth.controller'
 
 export const authRoutes = Router()
 
