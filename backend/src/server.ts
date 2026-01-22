@@ -1,17 +1,16 @@
+import { env } from './config/env';
 import { app } from './app';
 import { connectToDatabase, syncDatabase } from '@/shared/utils/database.util';
 import type { Server } from 'http';
 
-const PORT = 3001;
-
 //. Функция: запуск HTTP-сервера
 function startHttpServer(): Promise<Server> {
   return new Promise((resolve, reject) => {
-    const server = app.listen(PORT, '0.0.0.0', (err) => {
+    const server = app.listen(env.BACKEND_PORT, '0.0.0.0', (err) => {
       if (err) {
         return reject(new Error('SERVER_START_ERROR: ' + err.message));
       }
-      console.log(`🚀 [SERVER] Listening on port ${PORT}`);
+      console.log(`🚀 [SERVER] Listening on port ${env.BACKEND_PORT}`);
       resolve(server);
     });
   });

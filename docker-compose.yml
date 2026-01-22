@@ -32,6 +32,8 @@ services:
       context: backend
     ports:
       - "3001:3001"
+    env_file:
+      - ./env-config/.env
     networks:
       - app-network
     depends_on:

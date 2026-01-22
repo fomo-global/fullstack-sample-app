@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET, JWT_TTL } from '@config/jwt'
+import { env } from '@/config/env'
 
 export function signAccessToken(userId: string) {
-  return jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: JWT_TTL })
+  return jwt.sign({ sub: userId }, env.JWT_SECRET, { expiresIn: env.JWT_TTL })
 }
 
 export function verifyAccessToken(token: string) {
-  return jwt.verify(token, JWT_SECRET)
+  return jwt.verify(token, env.JWT_SECRET)
 }
