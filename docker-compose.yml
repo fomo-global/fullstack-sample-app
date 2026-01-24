@@ -44,10 +44,8 @@ services:
     image: postgres:15
     container_name: my_postgres
     restart: always
-    environment:
-      POSTGRES_USER: user_progect_1
-      POSTGRES_PASSWORD: user_password_1
-      POSTGRES_DB: db_progect_1
+    env_file:
+      - ./env-config/.env
     ports:
       - "5432:5432"
     volumes:
@@ -67,4 +65,3 @@ volumes:
 networks:
   app-network:
     driver: bridge
-

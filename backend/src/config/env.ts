@@ -22,20 +22,23 @@ const ttl = (name: string, defaultValue = "15m"): `${number}${"s" | "m" | "h" | 
 }
 
 export const env = {
-    //app
-    BACKEND_PORT: Number(requiredEnv('BACKEND_PORT')),
+  //front-originn url
+  FRONT_ORIGINS: requiredEnv('FRONT_ORIGINS'),
 
-    // db
-    POSTGRES_HOST: process.env.POSTGRES_HOST,
-    POSTGRES_PORT: Number(process.env.POSTGRES_PORT),
-    POSTGRES_DB: process.env.POSTGRES_DB,
-    POSTGRES_USER: process.env.POSTGRES_USER,
-    POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
+  //app
+  BACKEND_PORT: Number(requiredEnv('BACKEND_PORT')),
 
-    // jwt
-    JWT_SECRET: requiredEnv('JWT_SECRET'),
-    JWT_TTL: ttl('JWT_TTL', '2m'),
+  // db
+  POSTGRES_HOST: process.env.POSTGRES_HOST,
+  POSTGRES_PORT: Number(process.env.POSTGRES_PORT),
+  POSTGRES_DB: process.env.POSTGRES_DB,
+  POSTGRES_USER: process.env.POSTGRES_USER,
+  POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
 
-    //telegram
-    TELEGRAM_BOT_TOKEN: requiredEnv('TELEGRAM_BOT_TOKEN')
+  // jwt
+  JWT_SECRET: requiredEnv('JWT_SECRET'),
+  JWT_TTL: ttl('JWT_TTL', '2m'),
+
+  //telegram
+  TELEGRAM_BOT_TOKEN: requiredEnv('TELEGRAM_BOT_TOKEN')
 }
