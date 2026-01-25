@@ -1,8 +1,8 @@
-import path from "path"
-import winston from "winston"
-import DailyRotateFile from "winston-daily-rotate-file"
+import path from 'path';
+import winston from 'winston';
+import DailyRotateFile from 'winston-daily-rotate-file';
 
-const logDir = path.resolve(process.cwd(), "logs")
+const logDir = path.resolve(process.cwd(), 'logs');
 
 export const logger = winston.createLogger({
   transports: [
@@ -10,8 +10,8 @@ export const logger = winston.createLogger({
 
     new DailyRotateFile({
       dirname: logDir,
-      filename: "app-%DATE%.log",
-      datePattern: "YYYY-MM-DD",
+      filename: 'app-%DATE%.log',
+      datePattern: 'YYYY-MM-DD',
     }),
   ],
-})
+});

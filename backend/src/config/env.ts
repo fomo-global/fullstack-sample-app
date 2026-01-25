@@ -1,25 +1,23 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
 //проверяем точно ли приходит env
 const requiredEnv = (name: string): string => {
-    const env = process.env[name]
-    if(!env){
-        throw new Error(`Пропал env: ${name}`)
-    }
-    return env
-}
+  const env = process.env[name];
+  if (!env) {
+    throw new Error(`Пропал env: ${name}`);
+  }
+  return env;
+};
 
-const ttl = (name: string, defaultValue = "15m"): `${number}${"s" | "m" | "h" | "d"}`  => {
+const ttl = (name: string, defaultValue = '15m'): `${number}${'s' | 'm' | 'h' | 'd'}` => {
   const raw = (process.env[name] ?? defaultValue).trim();
 
   if (!/^\d+(s|m|h|d)$/.test(raw)) {
-    throw new Error(
-      `Env ${name} must match ^\\d+(s|m|h|d)$ like 15m or 1h, got "${raw}"`
-    );
+    throw new Error(`Env ${name} must match ^\\d+(s|m|h|d)$ like 15m or 1h, got "${raw}"`);
   }
 
-  return raw as `${number}${"s" | "m" | "h" | "d"}`;
-}
+  return raw as `${number}${'s' | 'm' | 'h' | 'd'}`;
+};
 
 export const env = {
   //front-originn url
@@ -40,5 +38,5 @@ export const env = {
   JWT_TTL: ttl('JWT_TTL', '2m'),
 
   //telegram
-  TELEGRAM_BOT_TOKEN: requiredEnv('TELEGRAM_BOT_TOKEN')
-}
+  TELEGRAM_BOT_TOKEN: requiredEnv('TELEGRAM_BOT_TOKEN'),
+};

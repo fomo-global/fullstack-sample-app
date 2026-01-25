@@ -12,7 +12,10 @@ interface UserAttributes {
   updatedAt?: Date;
 }
 
-type UserCreationAttributes = Optional<UserAttributes, 'id' | 'username' | 'firstName' | 'lastName' | 'photoUrl' | 'createdAt' | 'updatedAt'>;
+type UserCreationAttributes = Optional<
+  UserAttributes,
+  'id' | 'username' | 'firstName' | 'lastName' | 'photoUrl' | 'createdAt' | 'updatedAt'
+>;
 
 type UserInstance = Model<UserAttributes, UserCreationAttributes> & UserAttributes;
 
@@ -29,5 +32,5 @@ export const User = sequelize.define<UserInstance>(
   {
     tableName: 'users',
     timestamps: true,
-  }
-)
+  },
+);
