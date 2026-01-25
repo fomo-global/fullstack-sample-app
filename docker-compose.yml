@@ -34,6 +34,8 @@ services:
       - "3001:3001"
     env_file:
       - ./env-config/.env
+    volumes:
+      - ./backend/logs:/app/logs
     networks:
       - app-network
     depends_on:

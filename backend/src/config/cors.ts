@@ -1,18 +1,18 @@
-import type { CorsOptions } from "cors";
-import { env } from "./env";
+import type { CorsOptions } from "cors"
+import { env } from "./env"
 
 export const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
     if (!origin) {
-      return callback(null, true);
+      return callback(null, true)
     }
 
     if (env.FRONT_ORIGINS.includes(origin)) {
-      return callback(null, true);
+      return callback(null, true)
     }
 
-    console.warn(`[CORS] Blocked origin: ${origin}`);
-    return callback(new Error("Not allowed by CORS"));
+    console.warn(`[CORS] Blocked origin: ${origin}`)
+    return callback(new Error("Not allowed by CORS"))
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],

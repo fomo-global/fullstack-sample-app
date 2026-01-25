@@ -45,3 +45,11 @@ db-logs:
 # \q	    выйти
 db:
 	docker exec -it my_postgres psql -U user_progect_1 db_progect_1
+
+# зайти в бэк и посмотреть что там есть 
+exec-back:
+	docker exec -it my_backend sh 
+
+# посмотреть список всех контейнеров
+ps:
+	docker ps
