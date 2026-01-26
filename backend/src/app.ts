@@ -6,4 +6,9 @@ import { httpLogger } from './logger/httpLogger';
 
 export const app = express();
 
-app.use(express.json()).use(cors(corsOptions)).use(httpLogger).use(healthRoutes).use(authRoutes);
+app
+  .use(express.json())
+  .use(cors(corsOptions))
+  .use(httpLogger)
+  .use(healthRoutes)
+  .use(authRoutes);

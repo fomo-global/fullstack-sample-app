@@ -14,15 +14,26 @@ interface UserAttributes {
 
 type UserCreationAttributes = Optional<
   UserAttributes,
-  'id' | 'username' | 'firstName' | 'lastName' | 'photoUrl' | 'createdAt' | 'updatedAt'
+  | 'id'
+  | 'username'
+  | 'firstName'
+  | 'lastName'
+  | 'photoUrl'
+  | 'createdAt'
+  | 'updatedAt'
 >;
 
-type UserInstance = Model<UserAttributes, UserCreationAttributes> & UserAttributes;
+type UserInstance = Model<UserAttributes, UserCreationAttributes> &
+  UserAttributes;
 
 export const User = sequelize.define<UserInstance>(
   'User',
   {
-    id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     telegramId: { type: DataTypes.BIGINT, allowNull: false, unique: true },
     username: { type: DataTypes.STRING, allowNull: true },
     firstName: { type: DataTypes.STRING, allowNull: true },

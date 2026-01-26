@@ -3,7 +3,10 @@ import { parseTelegramInitData } from '@/shared/utils/telegram.util';
 import { findOrCreateByTelegramId } from './auth.repo';
 import { signAccessToken } from '@/shared/utils/jwt.util';
 
-export async function telegramAuth(req: Request<{}, any, { initData: string }>, res: Response) {
+export async function telegramAuth(
+  req: Request<{}, any, { initData: string }>,
+  res: Response,
+) {
   try {
     const { initData } = req.body;
     const { user } = parseTelegramInitData(initData);

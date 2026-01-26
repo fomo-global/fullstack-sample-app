@@ -9,11 +9,16 @@ const requiredEnv = (name: string): string => {
   return env;
 };
 
-const ttl = (name: string, defaultValue = '15m'): `${number}${'s' | 'm' | 'h' | 'd'}` => {
+const ttl = (
+  name: string,
+  defaultValue = '15m',
+): `${number}${'s' | 'm' | 'h' | 'd'}` => {
   const raw = (process.env[name] ?? defaultValue).trim();
 
   if (!/^\d+(s|m|h|d)$/.test(raw)) {
-    throw new Error(`Env ${name} must match ^\\d+(s|m|h|d)$ like 15m or 1h, got "${raw}"`);
+    throw new Error(
+      `Env ${name} must match ^\\d+(s|m|h|d)$ like 15m or 1h, got "${raw}"`,
+    );
   }
 
   return raw as `${number}${'s' | 'm' | 'h' | 'd'}`;
